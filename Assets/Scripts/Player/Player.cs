@@ -5,67 +5,81 @@ using System.Text;
 using System.Xml.Serialization;
 using UnityEngine;
 
-
-public class Player : MonoBehaviour, ISaveSystem
+namespace Assets.Scripts.Player.Level
 {
-    private const string PlayerKey = "PlayerSaveObject";
-    private static Player instance;
-    private static object syncRoot = new Object();
-    
-    private int Money { set; get; }
-    private int RealValue { set; get; }
-
-    private Player() 
+    public class Player : MonoBehaviour, ISaveSystem
     {
-        
-    }
+        private const string PlayerKey = "PlayerSave";
+        private static Player instance;
+        private static object syncRoot = new Object();
 
-    public static Player getInstance()
-    {
-        if (instance != null)
+        public int Money { private set; get; }
+        public int RealValue { private set; get; }
+
+        public static BaseLevel CurentGameLevel 
         {
-            lock (syncRoot)
+            get 
             {
-                if (instance == null)
-                    instance = new();
+                if (CurentGameLevel == null)
+                    throw new System.Exception("Level is not instanse");              
+                return CurentGameLevel;
             }
-        }
-        return instance;
-    }
-
-    private void Start()
-    {
-        ISaveSystem.ConnectionSaveSystem(this);
-        if (instance == null)
-            instance = this;
-        else if (instance == this)
-        { // Ёкземпл€р объекта уже существует на сцене
-            Destroy(gameObject); // ”дал€ем объект
+            set { CurentGameLevel = value; }
+            
         }
 
-        DontDestroyOnLoad(gameObject);
-    }
+        private Player()
+        {
 
-    string ISaveSystem.GetKey()
-    {
-        return PlayerKey;
-    }
+        }
 
-    string ISaveSystem.GetSaveData()
-    {
-        StringBuilder result = new StringBuilder();
-        result.Append(Money);
-        result.Append(" ");
-        result.Append(RealValue);
-        return result.ToString();
-    }
+        public static Player getInstance()
+        {
+            print(instance);
+            if (instance == null)
+            {
+                instance = new();
+                    
+            }
+            return instance;
+            
+        }        
 
-    void ISaveSystem.LoadData(string val)
-    {
-        string[] data = val.Split(' ');
-        Money = int.Parse(data[0]);
-        RealValue = int.Parse(data[1]);
-    }
+        private void Start()
+        {
+            print(2);
+            if (instance == null)
+                instance = new();
+            ISaveSystem.ConnectionSaveSystem(getInstance());
+            ISaveSystem.ConnectionSaveSystem(CurentGameLevel);
+           // DontDestroyOnLoad(gameObject);
+        }
 
-   
+        string ISaveSystem.GetKey()
+        {
+            return PlayerKey;
+        }
+
+        string ISaveSystem.GetSaveData()
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append(Money);
+            result.Append(" ");
+            result.Append(RealValue);
+            return result.ToString();
+        }
+
+        void ISaveSystem.LoadData(string val)
+        {
+            string[] data = val.Split(' ');
+            Money = int.Parse(data[0]);
+            RealValue = int.Parse(data[1]);
+        }
+
+        public void BaseLoadData()
+        {
+            Money = 0;
+            RealValue = 0;
+        }
+    }
 }
