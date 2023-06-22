@@ -10,49 +10,45 @@ namespace Assets.Scripts.Player.Level
     public class Player : MonoBehaviour, ISaveSystem
     {
         private const string PlayerKey = "PlayerSave";
-        private static Player instance;
-        private static object syncRoot = new Object();
+        private static Player instance;      
 
         public int Money { private set; get; }
         public int RealValue { private set; get; }
+        public static BaseLevel InstanceGameLevel { get; set; }
 
-        public static BaseLevel CurentGameLevel 
-        {
-            get 
-            {
-                if (CurentGameLevel == null)
-                    throw new System.Exception("Level is not instanse");              
-                return CurentGameLevel;
-            }
-            set { CurentGameLevel = value; }
-            
-        }
-
-        private Player()
+        private Player()   
         {
 
         }
 
-        public static Player getInstance()
+        public static BaseLevel GetLevel()
+        {            
+            InstanceGameLevel ??= new Level_0();
+            return InstanceGameLevel;
+        }
+
+        public static Player GetInstance()
         {
-            print(instance);
-            if (instance == null)
-            {
-                instance = new();
-                    
-            }
+            instance = instance != null ? instance : new();
             return instance;
             
-        }        
+        }
 
-        private void Start()
+        public static void Print()
         {
-            print(2);
+            print("123321");
+        }
+
+        private void Awake()
+        {
             if (instance == null)
                 instance = new();
-            ISaveSystem.ConnectionSaveSystem(getInstance());
-            ISaveSystem.ConnectionSaveSystem(CurentGameLevel);
-           // DontDestroyOnLoad(gameObject);
+
+            if (InstanceGameLevel == null)
+                InstanceGameLevel = GetLevel();
+
+            ISaveSystem.ConnectionSaveSystem(GetInstance());
+            ISaveSystem.ConnectionSaveSystem(InstanceGameLevel);
         }
 
         string ISaveSystem.GetKey()
@@ -62,7 +58,7 @@ namespace Assets.Scripts.Player.Level
 
         string ISaveSystem.GetSaveData()
         {
-            StringBuilder result = new StringBuilder();
+            StringBuilder result = new();
             result.Append(Money);
             result.Append(" ");
             result.Append(RealValue);

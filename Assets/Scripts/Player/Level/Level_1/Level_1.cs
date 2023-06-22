@@ -10,18 +10,19 @@ namespace Assets.Scripts.Player.Level
     internal class Level_1 : BaseLevel
     {
         public const int Level = 1;
-        public Level_1()
+        private const int NecessaryXPValue = 100;
+        public Level_1(int CurentXp = 0)
         {
-           int NecessaryXPValue = 100;
+            CurentXpValue = CurentXp;
         }
         public override int GetLevel()
         {
             return Level;
         }
 
-        public override BaseLevel GetXp(Player player, int value)
+        public override BaseLevel AddXp(int value)
         {
-            throw new NotImplementedException();
+            return BaseAddXp(value, NecessaryXPValue, out int superfluous) ? new Level_1(superfluous) : (BaseLevel)this;
         }
 
         public override void Start()
