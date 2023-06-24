@@ -2,32 +2,35 @@ using Assets.Scripts.Save_System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 namespace Assets.Scripts.Save_System
 {
-    public sealed class SaveSystem : MonoBehaviour
-    {        
+    public sealed class SaveSystem : MonoBehaviour, ILogInConsoleSystem
+    {
+        private static float WaitSecond = 1;
+
         private List<ISaveSystem> SaveObject = new();
-
-        private static SaveSystem instance;
-
-        private static object syncRoot = new Object();
+        private static SaveSystem instance;        
         private SaveSystem() { SaveObject = new(); }
+
         public static SaveSystem GetInstance()
-        {
+        {            
             if (instance == null)
-            {
-                lock (syncRoot)
-                {
-                    if (instance == null)
-                        instance = new();
-                }
+            {                
+                instance = new SaveSystem();
             }
+
             return instance;
         }
 
-        public static void AddSaveObject(ISaveSystem Object) => GetInstance().SaveObject.Add(Object);
+        public static void AddSaveObject(ISaveSystem Object) {
+            
+            print("Connect " + Object + " " + GetInstance()); GetInstance().SaveObject.Add(Object);
+        }
+
+        public static int CountConnection() => GetInstance().SaveObject.Count;
 
         public static void SaveGame()
         {
@@ -48,39 +51,54 @@ namespace Assets.Scripts.Save_System
                     i.LoadData(PlayerPrefs.GetString(i.GetKey()));
 
                     #if UNITY_EDITOR
-
-
-                    # endif
+                        ILogInConsoleSystem.ConsoleMessage($"{i.GetTypeClass()} + Load from file ");
+                    #endif
                 }
                 else
                 {
                     i.BaseLoadData();
 
                     #if UNITY_EDITOR
-
+                        ILogInConsoleSystem.ConsoleMessage($"{i.GetTypeClass()} + Base Load ");
                     #endif
+
                 }
 
 
         }
 
         private void Awake()
-        {
+        {            
             if (instance == null)
                 instance = this;
-            else if (instance == this)
-            { // Ёкземпл€р объекта уже существует на сцене
-                Destroy(gameObject); // ”дал€ем объект
+            else if (instance != null)
+            {
+                print("Destroy");
+                Destroy(this);
             }
+
+            print("SaveSystem Log" + instance);
         }
+
         public void Start()
         {
-            LoadGame(); 
+            print("LoadGame");
+            StartCoroutine(WaitForStartLoad());
         }
 
         public void OnApplicationQuit()
         {
             SaveGame();
+        }
+
+        IEnumerator WaitForStartLoad()
+        {
+            yield return new WaitForSeconds(WaitSecond);
+
+            #if UNITY_EDITOR
+                ILogInConsoleSystem.ConsoleMessage($" Load Game ");
+            #endif
+            LoadGame();
         }
 
     }

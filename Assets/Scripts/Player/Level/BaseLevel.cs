@@ -47,7 +47,7 @@ namespace Assets.Scripts.Player.Level
             {
                 case 0: { Player.InstanceGameLevel = new Level_0(CurentXp); break; }
                 case 1: { Player.InstanceGameLevel = new Level_1(CurentXp); break; }
-                default: { throw new Exception("Уровень не определен"); }
+                default: { throw new Exception("Level Not Found"); }
             }
         }
 
