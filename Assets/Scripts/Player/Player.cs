@@ -10,7 +10,7 @@ namespace Assets.Scripts.Player.Level
     public class Player : MonoBehaviour, ISaveSystem
     {
         private const string PlayerKey = "PlayerSave";
-        private static Player instance;      
+        private static Player instance = null;      
 
         public int Money { private set; get; }
         public int RealValue { private set; get; }
@@ -18,7 +18,8 @@ namespace Assets.Scripts.Player.Level
 
         private Player()   
         {
-
+            Money = 0;
+            RealValue = 0;
         }
 
         public static BaseLevel GetLevel()
@@ -28,10 +29,11 @@ namespace Assets.Scripts.Player.Level
         }
 
         public static Player GetInstance()
-        {
-            instance = instance != null ? instance : new();
+        {            
+            if (instance == null)
+                instance = new();
+
             return instance;
-            
         }
 
         public static void Print()
@@ -42,11 +44,14 @@ namespace Assets.Scripts.Player.Level
         private void Awake()
         {
             if (instance == null)
-                instance = new();
+                instance = this;
 
             if (InstanceGameLevel == null)
-                InstanceGameLevel = GetLevel();
+                InstanceGameLevel = GetLevel();            
+        }        
 
+        private void Start()
+        {
             ISaveSystem.ConnectionSaveSystem(GetInstance());
             ISaveSystem.ConnectionSaveSystem(InstanceGameLevel);
         }

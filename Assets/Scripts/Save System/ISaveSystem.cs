@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Save_System
 {    
-    public interface ISaveSystem
+    public interface ISaveSystem : IGetType
     {
         public static void ConnectionSaveSystem(ISaveSystem obj) => SaveSystem.AddSaveObject(obj);
 
@@ -16,6 +16,7 @@ namespace Assets.Scripts.Save_System
 
         //вызываем если данных найдено небыло
         public void BaseLoadData();
+        
     }
 }
  

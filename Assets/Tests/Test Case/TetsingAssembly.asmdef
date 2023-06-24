@@ -2,8 +2,8 @@
     "name": "TetsingAssembly",
     "rootNamespace": "",
     "references": [
-        "GUID:f453894be48d60749b00bde40890f52b",
-        "GUID:27619889b8ba8c24980f49ee34dbb44a"
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:925b93ca90aee46289a0c6984b0b323c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
