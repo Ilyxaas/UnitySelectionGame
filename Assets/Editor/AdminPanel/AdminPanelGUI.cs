@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using Assets.Scripts.Save_System;
 using Assets.Scripts.Player.Level;
+using Assets.Scripts.Admin;
 
 public class AdminPanelGUI : EditorWindow
 {
@@ -20,6 +21,7 @@ public class AdminPanelGUI : EditorWindow
     public void CreateGUI()
     {
         var DebugMode = new Toggle("Debug log in Console");
+        DebugMode.value = AdminPanelData.DebugInConsole;
 
         DebugMode.RegisterCallback<ClickEvent>(SetDebugInConsole);
 
@@ -29,6 +31,6 @@ public class AdminPanelGUI : EditorWindow
 
     public static void SetDebugInConsole(ClickEvent e)
     {
-        //AdminPanelData.DebugInConsole = !AdminPanelData.DebugInConsole;        
+        AdminPanelData.DebugInConsole = !AdminPanelData.DebugInConsole;        
     }
 }

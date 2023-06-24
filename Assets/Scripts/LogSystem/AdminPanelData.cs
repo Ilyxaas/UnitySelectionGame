@@ -7,7 +7,7 @@ namespace Assets.Scripts.Admin
 
     public class AdminPanelData
     {
-        public static bool DebugInConsole {set;get;} = false;
+        public static bool DebugInConsole {set;get;} = true;
 
     }
 }
