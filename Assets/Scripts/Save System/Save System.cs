@@ -76,8 +76,6 @@ namespace Assets.Scripts.Save_System
                 print("Destroy");
                 Destroy(this);
             }
-
-            print("SaveSystem Log" + instance);
         }
 
         public void Start()

@@ -10,45 +10,51 @@ namespace Assets.Scripts.Player.Level
     public class Player : MonoBehaviour, ISaveSystem
     {
         private const string PlayerKey = "PlayerSave";
-        private static Player instance = null;      
+        private static Player instance = null;
 
-        public int Money { private set; get; }
-        public int RealValue { private set; get; }
+        private int money = 0;
+        private int realMoney = 0;
+
+        public int Money { get => money; private set => money = value; }
+        public int RealMoney { get => realMoney; private set => realMoney = value; }
         public static BaseLevel InstanceGameLevel { get; set; }
 
-        private Player()   
+        private Player()
         {
             Money = 0;
-            RealValue = 0;
+            RealMoney = 0;
         }
 
         public static BaseLevel GetLevel()
-        {            
+        {
             InstanceGameLevel ??= new Level_0();
             return InstanceGameLevel;
         }
 
         public static Player GetInstance()
-        {            
+        {
             if (instance == null)
                 instance = new();
 
             return instance;
         }
 
-        public static void Print()
+        public static int Print(int i)
         {
             print("123321");
+            return i;
         }
 
         private void Awake()
         {
             if (instance == null)
                 instance = this;
+            else
+                Destroy(this);
 
             if (InstanceGameLevel == null)
-                InstanceGameLevel = GetLevel();            
-        }        
+                InstanceGameLevel = GetLevel();
+        }
 
         private void Start()
         {
@@ -56,7 +62,7 @@ namespace Assets.Scripts.Player.Level
             ISaveSystem.ConnectionSaveSystem(InstanceGameLevel);
         }
 
-        string ISaveSystem.GetKey()
+        public string GetKey()
         {
             return PlayerKey;
         }
@@ -66,7 +72,7 @@ namespace Assets.Scripts.Player.Level
             StringBuilder result = new();
             result.Append(Money);
             result.Append(" ");
-            result.Append(RealValue);
+            result.Append(RealMoney);
             return result.ToString();
         }
 
@@ -74,13 +80,13 @@ namespace Assets.Scripts.Player.Level
         {
             string[] data = val.Split(' ');
             Money = int.Parse(data[0]);
-            RealValue = int.Parse(data[1]);
+            RealMoney = int.Parse(data[1]);
         }
 
         public void BaseLoadData()
         {
             Money = 0;
-            RealValue = 0;
+            RealMoney = 0;
         }
     }
 }
