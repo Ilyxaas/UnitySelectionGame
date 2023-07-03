@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e1ee03aadeac847ac37484f340f1aa, type: 3}
+  m_Name: 4 Inventory
+  m_EditorClassIdentifier: 
+  Background: {fileID: 0}
+  BehindSkill: []
+  NextSkill:
+  - Tree: {fileID: 0}
+    Skill: {fileID: 11400000, guid: 4b6e603474d99d0408a41422463b6df8, type: 2}
+  IsWiew: 0
+  isSecret: 0
+  nameSkill: Inventory
+  isLock: 1
+  cost: 0
+  minimalLevelPlayer: 10
+  eventToUnlock:
+    m_PersistentCalls:
+      m_Calls: []
+  countItemsAdd: 0

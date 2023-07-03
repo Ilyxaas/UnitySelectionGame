@@ -1,4 +1,6 @@
+using Assets.Scripts.Player.Skill;
 using Assets.Scripts.Save_System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -7,16 +9,22 @@ using UnityEngine;
 
 namespace Assets.Scripts.Player.Level
 {
-    public class Player : MonoBehaviour, ISaveSystem
+    [Serializable]
+    public sealed class Player : MonoBehaviour, ISaveSystem
     {
+        [NonSerialized]
         private const string PlayerKey = "PlayerSave";
+        [NonSerialized]
         private static Player instance = null;
 
+        [SerializeField]
         private int money = 0;
+        [SerializeField]
         private int realMoney = 0;
 
         public int Money { get => money; private set => money = value; }
         public int RealMoney { get => realMoney; private set => realMoney = value; }
+        
         public static BaseLevel InstanceGameLevel { get; set; }
 
         private Player()
@@ -59,7 +67,7 @@ namespace Assets.Scripts.Player.Level
         private void Start()
         {
             ISaveSystem.ConnectionSaveSystem(GetInstance());
-            ISaveSystem.ConnectionSaveSystem(InstanceGameLevel);
+            ISaveSystem.ConnectionSaveSystem(InstanceGameLevel);            
         }
 
         public string GetKey()
@@ -68,19 +76,13 @@ namespace Assets.Scripts.Player.Level
         }
 
         string ISaveSystem.GetSaveData()
-        {
-            StringBuilder result = new();
-            result.Append(Money);
-            result.Append(" ");
-            result.Append(RealMoney);
-            return result.ToString();
+        {            
+            return JsonUtility.ToJson(this);
         }
 
         void ISaveSystem.LoadData(string val)
         {
-            string[] data = val.Split(' ');
-            Money = int.Parse(data[0]);
-            RealMoney = int.Parse(data[1]);
+            instance = JsonUtility.FromJson<Player>(val);            
         }
 
         public void BaseLoadData()
