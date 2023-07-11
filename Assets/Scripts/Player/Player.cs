@@ -11,17 +11,16 @@ namespace Assets.Scripts.Player.Level
 {
     [Serializable]
     public sealed class Player : MonoBehaviour, ISaveSystem
-    {
-        [NonSerialized]
+    {        
         private const string PlayerKey = "PlayerSave";
-        [NonSerialized]
+        
         private static Player instance = null;
 
         [SerializeField]
         private int money = 0;
         [SerializeField]
         private int realMoney = 0;
-
+        
         public int Money { get => money; private set => money = value; }
         public int RealMoney { get => realMoney; private set => realMoney = value; }
         
@@ -76,13 +75,19 @@ namespace Assets.Scripts.Player.Level
         }
 
         string ISaveSystem.GetSaveData()
-        {            
-            return JsonUtility.ToJson(this);
+        {
+            StringBuilder result = new();
+            result.Append(Money);
+            result.Append(" ");
+            result.Append(RealMoney);
+            return result.ToString();
         }
 
         void ISaveSystem.LoadData(string val)
         {
-            instance = JsonUtility.FromJson<Player>(val);            
+            string[] data = val.Split(' ');
+            Money = int.Parse(data[0]);
+            RealMoney = int.Parse(data[1]);
         }
 
         public void BaseLoadData()

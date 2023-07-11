@@ -5,6 +5,6 @@ using Assets.Scripts.Player.Skill;
 
 public class LocalizationManager : MonoBehaviour
 {
-    public SkillsLocale skillsLocaleTable => GetComponent<SkillsLocale>();    
+    public SkillsLocale SkillsLocaleTable => GetComponent<SkillsLocale>();    
     
 }

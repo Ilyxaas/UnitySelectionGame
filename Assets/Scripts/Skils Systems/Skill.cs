@@ -66,12 +66,12 @@ namespace Assets.Scripts.Player.Skill
 
         public string GetInfo()
         {
-            return SkillsLocale.getInstanse().SkilsLocaleTable.GetTable().GetEntry(NameSkill + Info).Value;
+            return SkillsLocale.GetInstanse().SkilsLocaleTable.GetTable().GetEntry(NameSkill + Info).Value;
         }
 
         public string GetName()
         {
-            return SkillsLocale.getInstanse().SkilsLocaleTable.GetTable().GetEntry(NameSkill + name).Value; ;
+            return SkillsLocale.GetInstanse().SkilsLocaleTable.GetTable().GetEntry(NameSkill + name).Value; ;
         }
     }
 

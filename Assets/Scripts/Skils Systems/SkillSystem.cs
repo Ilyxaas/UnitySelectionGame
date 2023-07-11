@@ -2,46 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Player.Skill;
+using UnityEngine.UIElements;
+using Assets.Scripts.Menu;
 
-public sealed class SkillSystem : MonoBehaviour
+namespace Assets.Scripts.Player.Skill
 {
-    public static SkillSystem instance;
-    [SerializeField]
-    private Skill baseSkill;
-    public Skill BaseSkill { get => baseSkill; private set => baseSkill = value; }
-    private void Awake()
+    public sealed class SkillSystem : MonoBehaviour
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(this);
-        
-    }
 
-    public static List<Skill> GetPurchasedSkill()
-    {
-        List<Skill> result = new List<Skill>();
-
-        foreach (Skill i in instance.baseSkill.NextSkill)
-            CheckSkill(i);
-
-        void CheckSkill(Skill curent)
+        public static SkillSystem instance;
+        [SerializeField]
+        private Skill baseSkill;
+        public Skill BaseSkill { get => baseSkill; private set => baseSkill = value; }
+        private void Awake()
         {
-            if (curent.IsLock == false)
-            {
-                result.Add(curent);
-                foreach (Skill j in curent.NextSkill)
-                    CheckSkill(j);
-            } 
+            if (instance == null)
+                instance = this;
+            else
+                Destroy(this);
+
         }
-        return result;
+
+        public static SkillSystem GetInstanse()
+        {
+            return instance;
+        }
+
+        public static List<Skill> GetPurchasedSkill()
+        {
+            List<Skill> result = new List<Skill>();
+
+            foreach (Skill i in instance.baseSkill.NextSkill)
+                CheckSkill(i);
+
+            void CheckSkill(Skill curent)
+            {
+                if (curent.IsLock == false)
+                {
+                    result.Add(curent);
+                    foreach (Skill j in curent.NextSkill)
+                        CheckSkill(j);
+                }
+            }
+            return result;
+        }
     }
-
-    
-
-
-
-
-
-
 }

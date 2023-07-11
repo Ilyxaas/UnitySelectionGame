@@ -29,8 +29,8 @@ public class PlayerTesting
 
         yield return new WaitForSeconds(1.5f);
 
-        Assert.True(obj2.TryGetComponent(out Player save) == false
-            && obj3.TryGetComponent(out Player save2) == false);
+        Assert.True(obj2.TryGetComponent(out Player _) == false
+            && obj3.TryGetComponent(out Player _) == false);
     }
 
     [UnityTest]
@@ -50,13 +50,9 @@ public class PlayerTesting
 
         yield return new WaitForSeconds(1f);
 
-        Player obj;
+        UnityEngine.Debug.Log(Player.TryGetComponent(out Player obj));
 
-        SaveSystem save;
-
-        UnityEngine.Debug.Log(Player.TryGetComponent(out obj));
-
-        UnityEngine.Debug.Log(SaveSystem.TryGetComponent(out save));
+        UnityEngine.Debug.Log(SaveSystem.TryGetComponent(out SaveSystem save));
 
         PropertyInfo money =
             TypePlayer.GetProperty("Money");

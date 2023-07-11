@@ -6,8 +6,7 @@ using UnityEngine.Localization;
 namespace Assets.Scripts.Player.Skill
 {
     public class SkillsLocale : MonoBehaviour
-    {
-        [SerializeField]
+    {        
         public LocalizedStringTable SkilsLocaleTable;
 
         private static SkillsLocale instance;
@@ -20,7 +19,7 @@ namespace Assets.Scripts.Player.Skill
                 Destroy(this);
         }
 
-        public static SkillsLocale getInstanse()
+        public static SkillsLocale GetInstanse()
         {
             if (instance == null)
                 throw new System.Exception("SkillsLocale is not Found");

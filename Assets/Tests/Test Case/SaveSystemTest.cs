@@ -66,8 +66,8 @@ public class SaveSystemTest
 
         UnityEngine.Debug.Log(obj2);
 
-        Assert.True(obj2.TryGetComponent(out SaveSystem save) == false
-            && obj3.TryGetComponent(out SaveSystem save2) == false);         
+        Assert.True(obj2.TryGetComponent(out SaveSystem _) == false
+            && obj3.TryGetComponent(out SaveSystem _) == false);         
     }
 
     [UnityTest]
