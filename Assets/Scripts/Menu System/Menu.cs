@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.Menu
 {
-
     public delegate void UIEvent(bool value);
+
     public abstract class Menu : MonoBehaviour
     {
         protected Camera CurrentCamera => Camera.main;

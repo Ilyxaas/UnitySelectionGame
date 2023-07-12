@@ -4315,8 +4315,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5, y: 2.1201172}
-  m_SizeDelta: {x: -1, y: 2.1999512}
+  m_AnchoredPosition: {x: 0, y: 1.6101074}
+  m_SizeDelta: {x: 0, y: 3.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1051745054 stripped
 Transform:
@@ -5005,6 +5005,7 @@ GameObject:
   - component: {fileID: 1183379374}
   - component: {fileID: 1183379376}
   - component: {fileID: 1183379375}
+  - component: {fileID: 1183379377}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -5071,6 +5072,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183379373}
   m_CullTransparentMesh: 1
+--- !u!114 &1183379377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183379373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712810651d8f0864cbefe097ff9c5d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1199785207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5433576065236946009, guid: 8793e37063ad97d448dbf965a56126e4, type: 3}
@@ -7690,6 +7703,7 @@ MonoBehaviour:
   standartValueScale: 25
   rect: {fileID: 1360453365}
   standartValueCameraPosition: {x: -0.35, y: 16, z: -0.06}
+  UIskillTouch: {fileID: 1183379377}
   BuyUISkillObject: {fileID: 1183379373}
 --- !u!1 &2027719355
 GameObject:

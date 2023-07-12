@@ -23,6 +23,10 @@ namespace Assets.Scripts.Menu
             {                
                 Destroy(this);
             }
+
+            foreach (var i in FindObjectsOfType<Menu>())            
+                i.Quit();
+            
         }
 
         public void Start()

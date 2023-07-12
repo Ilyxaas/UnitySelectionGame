@@ -13,7 +13,11 @@ namespace Assets.Scripts.Menu
         public event UIEvent OnUIOpen;
 
         [SerializeField]
+        private OnTouchUISkill UIskillTouch;
+
+        [SerializeField]
         private GameObject BuyUISkillObject;
+
         private bool UIView = false;
         public override Menu GoBack()
         {
@@ -22,9 +26,10 @@ namespace Assets.Scripts.Menu
 
         public override void HitsObjectMenu(RaycastHit[] Hit)
         {
-            if (Hit.Count() == 0)
+            if (Hit.Count() == 0 && UIskillTouch.IsTouch == false)
             {
-                UIView = false;                
+                UIView = false;
+                
                 OnUIOpen.Invoke(UIView);
                 return;            
             }
@@ -32,7 +37,7 @@ namespace Assets.Scripts.Menu
 
             foreach (var i in Hit)
             {
-                if (i.collider.gameObject.TryGetComponent<SkillView>(out SkillView ViewSkill))
+                if (i.collider.gameObject.TryGetComponent(out SkillView ViewSkill))
                 {
                     UIView = true;
                     OnUIOpen.Invoke(UIView);
@@ -52,11 +57,13 @@ namespace Assets.Scripts.Menu
 
         public override void Load()
         {
+            base.Load();
             BuyUISkillObject.SetActive(true);            
         }
 
         public override void Quit()
         {
+            base.Quit();
             BuyUISkillObject.SetActive(false);
         }
     }
