@@ -18,9 +18,7 @@ namespace Assets.Scripts.Menu
         [SerializeField]
         private float DownDistanse;
 
-        //возможно переделать в относительные координаты
-        //moved Parametrs
-
+        
         private Vector2 StartPos1, StartPos2;
         private float Distanse;
         private float StartDistanse;
@@ -54,6 +52,7 @@ namespace Assets.Scripts.Menu
                     case TouchPhase.Moved:
                     {
                         CameraManager.GetInstance().MoveCamera(-1 * SensivityMove * touch.deltaPosition);
+                        MenuManager.GetInstanse().CurentMenu.MoveObject(touch.deltaPosition, touch.position);
                         break;
                     }                        
                }
@@ -78,15 +77,14 @@ namespace Assets.Scripts.Menu
                 {
                     var CurentDistanse = Vector2.Distance(touch1.position, touch2.position);
                     float Scale = Distanse / CurentDistanse;
-                    if (StartDistanse > CurentDistanse)
-                        print("Увеличиваем");
-                    else
-                        print("Уменьшаем");
                     Distanse = CurentDistanse;
-                    CameraManager.GetInstance().ScaleCamera((Scale - 1) * SensivityScale);
-                    
+                    CameraManager.GetInstance().ScaleCamera((Scale - 1) * SensivityScale);                  
                     
                 }
+
+                MenuManager.GetInstanse().CurentMenu.ScrollMenu(touch1.deltaPosition.y + touch2.deltaPosition.y);
+
+
             }
                 
 

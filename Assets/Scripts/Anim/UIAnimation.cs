@@ -26,10 +26,6 @@ public class UIAnimation : MonoBehaviour
             UIAnimator.SetBool("SkillTreeUI", value);
         };
 
-
-
-
-
         if (instance == null)
             instance = this;
         else

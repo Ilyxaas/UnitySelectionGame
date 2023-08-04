@@ -8,7 +8,7 @@ namespace Assets.Scripts.Menu
 {
     public class RayCastSystem : MonoBehaviour
     {
-        private MenuManager menuManager => MenuManager.GetInstanse();
+        //private MenuManager menuManager => MenuManager.GetInstanse();
 
         static RayCastSystem instance;
 
@@ -33,7 +33,7 @@ namespace Assets.Scripts.Menu
         {
             Ray Ray = Camera.main.ScreenPointToRay(ScreenPos);
             var Hits = Physics.RaycastAll(Ray);
-            print(Hits.Count());
+            //print(Hits.Count());
             return Hits;
         }
     }

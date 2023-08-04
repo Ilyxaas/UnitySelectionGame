@@ -7,20 +7,15 @@ using UnityEngine.EventSystems;
 namespace Assets.Scripts.Menu
 {
     public class OnTouchUISkill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-    {        
-        public bool IsTouch { get; private set; } = false;
+    {    
         public void OnPointerEnter(PointerEventData eventData)
         {
-            IsTouch = true;
+            MenuManager.GetInstanse().SetUITouch(true);            
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            IsTouch = false;
+            MenuManager.GetInstanse().SetUITouch(false);            
         }
-
-        
-
-
     }
 }

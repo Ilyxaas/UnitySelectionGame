@@ -49,7 +49,7 @@ public class GamePlayLoadTests
             throw new Exception("SaveSystem not Found");
 
         if (SkillSystem.GetInstanse() == null)
-            throw new Exception("Skill System not Found");
+            throw new Exception("Skill System not Found");        
 
         Assert.True(true);
     }

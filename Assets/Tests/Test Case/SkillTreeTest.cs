@@ -7,8 +7,7 @@ using Assets.Scripts.Player.Skill;
 using System;
 using UnityEngine.SceneManagement;
 using System.Reflection;
-using System.Reflection;
-using System.Diagnostics;
+
 
 
 public class SkillTreeTest : MonoBehaviour

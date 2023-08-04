@@ -17,6 +17,9 @@ namespace Assets.Scripts.Menu
         private GameObject SceneParent;
 
         [SerializeField]
+        public bool UITouch { get; protected set; } = false;
+
+        [SerializeField]
         private bool isMove;
 
         [SerializeField]
@@ -39,17 +42,24 @@ namespace Assets.Scripts.Menu
 
         [SerializeField]
         private Vector3 standartValueCameraPosition;
-
+        
         public float StandartValueScale { get => standartValueScale; private set => standartValueScale = value; }
+
         public MenuRect Rect { get => rect; private set => rect = value; }
+
         public bool IsMove { get => isMove; private set => isMove = value; }
+
         public bool IsScale { get => isScale; private set => isScale = value; }
+
         public float MaxValueScale { get => maxValueScale; private set => maxValueScale = value; }
+
         public float MinValueScale { get => minValueScale; private set => minValueScale = value; }
+
         public Vector3 StandartValueCameraPosition 
             { get => standartValueCameraPosition; private set => standartValueCameraPosition = value; }
 
         public abstract Menu GoBack();
+
         public virtual void Load()
         {
             UIParent.SetActive(true);
@@ -65,6 +75,12 @@ namespace Assets.Scripts.Menu
         {
             return Rect.PositionToBorders();            
         }
+
+        public void SetUITouch(bool value) => UITouch = value;
+
+        public abstract void MoveObject(Vector3 DeltaPositon, Vector3 Position);
+
+        public abstract void ScrollMenu(float DeltaPosition);
 
     }
 }

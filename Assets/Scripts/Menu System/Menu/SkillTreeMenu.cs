@@ -19,6 +19,7 @@ namespace Assets.Scripts.Menu
         private GameObject BuyUISkillObject;
 
         private bool UIView = false;
+        
         public override Menu GoBack()
         {
             throw new NotImplementedException();
@@ -26,14 +27,13 @@ namespace Assets.Scripts.Menu
 
         public override void HitsObjectMenu(RaycastHit[] Hit)
         {
-            if (Hit.Count() == 0 && UIskillTouch.IsTouch == false)
+            if (Hit.Count() == 0 && UITouch == false)
             {
                 UIView = false;
                 
                 OnUIOpen.Invoke(UIView);
                 return;            
             }
-
 
             foreach (var i in Hit)
             {
@@ -45,15 +45,7 @@ namespace Assets.Scripts.Menu
             }
         }
 
-        #if UNITY_EDITOR
-
-        public void Update()
-        {            
-            CurrentCamera.gameObject.transform.position = StandartValueCameraPosition;
-            CurrentCamera.orthographicSize = StandartValueScale;
-        }
-
-        #endif
+        
 
         public override void Load()
         {
@@ -65,6 +57,16 @@ namespace Assets.Scripts.Menu
         {
             base.Quit();
             BuyUISkillObject.SetActive(false);
+        }
+
+        public override void MoveObject(Vector3 DeltaPositon, Vector3 Position)
+        {
+            
+        }
+
+        public override void ScrollMenu(float DeltaPosition)
+        {
+            
         }
     }
 }

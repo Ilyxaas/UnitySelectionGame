@@ -41,21 +41,14 @@ namespace Assets.Scripts.Menu
                 );
         }
 
-        private void Start()
-        {
-            //print(GetMainCameraBorders());
-            CurrentCamera.orthographicSize += 1;
-            //print(GetMainCameraBorders());
-        }
-
+        
         public bool MoveCamera(Vector2 value)
         {
             if (MenuManager.GetInstanse().CurentMenu.IsMove == false)
                 return false;
 
             if (MenuManager.GetBordersCurentMenu() > (GetMainCameraBorders() + value))
-            {
-                print(2);
+            {                
                 CurrentCamera.gameObject.transform.Translate(value);
                 return true;
             }
@@ -71,9 +64,7 @@ namespace Assets.Scripts.Menu
             {                
                 CurrentCamera.orthographicSize += value;
                 return true;
-            }
-            else
-                print("Вышли за рамки");
+            }            
             return false;
         }
     }
@@ -142,6 +133,12 @@ namespace Assets.Scripts.Menu
                 return true;
             return false;
         }
+
+        public bool PointInBorders(Vector2 Point)
+        {
+            return LeftTop.x < Point.x && LeftTop.y > Point.y && RightLower.x > Point.x && RightLower.y < Point.y;
+        }
+
 
         public override int GetHashCode()
         {

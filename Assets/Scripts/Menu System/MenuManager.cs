@@ -46,5 +46,7 @@ namespace Assets.Scripts.Menu
             return instance; 
 
         }
+
+        public void SetUITouch(bool value) => curentMenu.SetUITouch(value);
     }
 }
