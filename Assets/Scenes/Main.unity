@@ -1815,7 +1815,6 @@ MonoBehaviour:
   TitlesParent: {fileID: 1080760321}
   RectFouter: {fileID: 1134122927}
   Scrollbar: {fileID: 0}
-  MaxValue: 0
 --- !u!224 &231174065 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1362263428785967273, guid: d2eb4b28127204a3e834d61b36f28584, type: 3}
@@ -5523,7 +5522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &869227027
 RectTransform:
   m_ObjectHideFlags: 0

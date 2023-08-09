@@ -21,9 +21,12 @@ namespace Assets.Scripts.Player.Inventory
         Large = 2
     }
 
+    delegate void UpdateToolsUIInventory(int MaxEndurance, int CurrentEndurance);
     
     public abstract class Tools : Item , IInventoryObject
     {
+        private event UpdateToolsUIInventory UseToolEvent;
+
         [SerializeField]
         private bool Unloved;
 
@@ -97,6 +100,11 @@ namespace Assets.Scripts.Player.Inventory
             GameObject result =
                  Instantiate(InventorySystem.GetInstance().UITypeToolsIcon, Parent);
             result.GetComponentInChildren<Image>().sprite = Icon;
+            result.GetComponent<UIToolsColorSlider>();
+
+            UseToolEvent += result.GetComponent<UIToolsColorSlider>().UpdateColorSliderValue;
+            UseToolEvent.Invoke(Maxendurance, CurrentEndurance);
+
             return result;
         }
     }

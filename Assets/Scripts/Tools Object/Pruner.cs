@@ -1,18 +1,13 @@
-using UnityEditor;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace Assets.Scripts.Player.Inventory
 {
-    public interface IShovel
+    [CreateAssetMenu(menuName = "Item/Pruner")]
+    public class Pruner : Tools, ILogInConsoleSystem
     {
-
-    }
-
-    [CreateAssetMenu(menuName = "Item/Shovel")]
-    public class Shovel : Tools, IShovel, ILogInConsoleSystem
-    {
-
         [ContextMenu("Add To Inventory")]
         public void AddToInventory()
         {
@@ -22,13 +17,6 @@ namespace Assets.Scripts.Player.Inventory
 
                 Inventory.GetInstance().Add(Instantiate(this));
             }
-        }        
+        }
     }
-
-
-
-
-
-
-
 }

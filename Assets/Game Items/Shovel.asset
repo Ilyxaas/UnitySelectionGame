@@ -17,6 +17,6 @@ MonoBehaviour:
   names: 
   RarityType: 5
   Unloved: 0
-  MaxEndurance: 0
-  CurrentEndurance: 0
+  MaxEndurance: 10
+  CurrentEndurance: 2
   formatTools: 1
