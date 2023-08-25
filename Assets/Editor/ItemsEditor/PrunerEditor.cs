@@ -9,7 +9,7 @@ public class PrunerEditor : Editor
 {
     public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
     {
-        var Items = (Shovel)target;
+        var Items = (Pruner)target;
         if (Items == null || Items.Icon == null)
             return null;
 

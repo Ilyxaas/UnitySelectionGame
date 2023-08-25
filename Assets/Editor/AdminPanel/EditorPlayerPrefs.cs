@@ -11,9 +11,4 @@ public class EditorPlayerPrefs : EditorWindow
     {
         PlayerPrefs.DeleteAll();
     }
-
-
-    
-
-
 }

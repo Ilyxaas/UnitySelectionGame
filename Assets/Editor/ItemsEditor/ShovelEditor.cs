@@ -12,8 +12,7 @@ public class ShovelEditor : Editor
         var Items = (Shovel) target;
         if (Items == null || Items.Icon == null)
         {
-            Debug.Log("None Texture");
-            //return base.RenderStaticPreview(assetPath, subAssets, width, height);
+            Debug.Log("None Texture");           
             return null;
         }
         

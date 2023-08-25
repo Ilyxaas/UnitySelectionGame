@@ -22,8 +22,7 @@ public class InventoryMenu : Menu
     {
         InventorySystem.GetInstance().TouchPosition = Position;
         if (InventorySystem.GetInstance().IsMoveItem)
-        {
-            //Debug.Log("Двигаем");
+        {            
             InventorySystem.GetInstance().CurrentItemMove.Move(DeltaPositon);
         }
         

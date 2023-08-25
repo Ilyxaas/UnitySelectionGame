@@ -3,41 +3,44 @@ using System.Collections.Generic;
 using Assets.Scripts.Player.Inventory;
 using UnityEngine;
 
-
-public enum Rarity
+namespace Assets.Scripts.Player.Inventory
 {
-    Standart = 0,
-    Rare  = 1,
-    Mystical = 2,
-    Legendary = 3,
-    Unique = 4,    
-}
 
-public abstract class Item : ScriptableObject
-{
-    [SerializeField]    
-    private Sprite icon;
+    public enum Rarity
+    {
+        Standart = 0,
+        Rare = 1,
+        Mystical = 2,
+        Legendary = 3,
+        Unique = 4,
+    }
 
-    [SerializeField]
-    protected string description;
+    public abstract class Item : ScriptableObject
+    {
+        [SerializeField]
+        private Sprite icon;
 
-    [SerializeField]
-    protected string names;
+        [SerializeField]
+        protected string description;
 
-    [SerializeField]
-    protected Rarity RarityType;    
+        [SerializeField]
+        protected string names;
 
-    public Sprite Icon { get => icon; protected set => icon = value; }
+        [SerializeField]
+        protected Rarity RarityType;
 
-    public string Name { get => names; protected set => names = value; }
+        public Sprite Icon { get => icon; protected set => icon = value; }
 
-    public string Description { get => description; protected set => description = value; }
+        public string Name { get => names; protected set => names = value; }
 
-    public Rarity rarityType { get => RarityType; private set => RarityType = value; }
+        public string Description { get => description; protected set => description = value; }
 
-    
+        public Rarity rarityType { get => RarityType; private set => RarityType = value; }
 
 
+
+
+    }
 }
 
 

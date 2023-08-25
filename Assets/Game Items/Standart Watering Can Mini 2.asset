@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71581416c855b7a4888861dc95c8a528, type: 3}
+  m_Name: Standart Watering Can Mini 2
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 0ce025cefa1b3224cba7315c53c7a36d, type: 3}
+  description: 
+  names: 
+  RarityType: 0
+  Unloved: 0
+  MaxEndurance: 0
+  CurrentEndurance: 0
+  formatTools: 0

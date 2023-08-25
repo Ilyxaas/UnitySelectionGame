@@ -187,7 +187,7 @@ namespace Assets.Scripts.Player.Inventory
                     Debug.Log("Создали объект");
                     int X = IndexEmpty.Item1.Value;
                     int Y = IndexEmpty.Item2.Value;
-                    print($"{IndexEmpty.Item1.Value} {IndexEmpty.Item2.Value}");
+                    //print($"{IndexEmpty.Item1.Value} {IndexEmpty.Item2.Value}");
 
                     InventoryItem inventoryItem = new InventoryItem
                                             (
@@ -255,9 +255,5 @@ namespace Assets.Scripts.Player.Inventory
             else
                 return false;
         }
-
-
-
-
     }
 }
